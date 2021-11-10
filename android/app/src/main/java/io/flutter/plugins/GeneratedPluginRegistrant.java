@@ -2,8 +2,10 @@ package io.flutter.plugins;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
+import io.flutter.Log;
 
 import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 
 /**
  * Generated file. Do not edit.
@@ -12,6 +14,13 @@ import io.flutter.embedding.engine.FlutterEngine;
  */
 @Keep
 public final class GeneratedPluginRegistrant {
+  private static final String TAG = "GeneratedPluginRegistrant";
   public static void registerWith(@NonNull FlutterEngine flutterEngine) {
+    ShimPluginRegistry shimPluginRegistry = new ShimPluginRegistry(flutterEngine);
+    try {
+      it.matteocrippa.flutternfcreader.FlutterNfcReaderPlugin.registerWith(shimPluginRegistry.registrarFor("it.matteocrippa.flutternfcreader.FlutterNfcReaderPlugin"));
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin flutter_nfc_reader, it.matteocrippa.flutternfcreader.FlutterNfcReaderPlugin", e);
+    }
   }
 }

@@ -12,14 +12,14 @@ class AnimalList extends StatelessWidget {
     return ListView(children: [
       ...(animalsDB).map((animalData) {
         animalData['birthDate'] != null
-            ? ret = AnimalTile.withBirthdate(
+            ? ret = OrientedAnimalTile.withBirthdate(
                 animalData['name'].toString(),
                 animalData['id'].toString(),
                 animalData['breed'].toString(),
                 DateTime.parse(animalData['entryDate'].toString()),
                 DateTime.parse(animalData['birthDate'].toString()),
                 animalData['photo'].toString())
-            : ret = AnimalTile(
+            : ret = OrientedAnimalTile(
                 animalData['name'].toString(),
                 animalData['id'].toString(),
                 animalData['breed'].toString(),

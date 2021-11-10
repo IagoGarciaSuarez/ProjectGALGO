@@ -1,0 +1,2 @@
+it/matteocrippa/flutternfcreader/BuildConfig.java
+ it.matteocrippa.flutternfcreader.BuildConfig

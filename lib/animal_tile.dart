@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import './portrait_animal_tile.dart';
+import './landscape_animal_tile.dart';
 
-class AnimalTile extends StatelessWidget {
-  String name;
-  String id;
-  String raza;
-  String photo;
-  DateTime entryDate;
-  DateTime birthDate;
+class OrientedAnimalTile extends StatelessWidget {
+  final String name;
+  final String id;
+  final String raza;
+  final String photo;
+  final DateTime entryDate;
+  final DateTime birthDate;
   List<int>? age;
 
-  AnimalTile(this.name, this.id, this.raza, this.entryDate,
+  OrientedAnimalTile(this.name, this.id, this.raza, this.entryDate,
       [this.photo = 'galgo.png'])
       : birthDate = DateTime.parse("1900-01-01"),
         age = null;
-  AnimalTile.withBirthdate(
+  OrientedAnimalTile.withBirthdate(
       this.name, this.id, this.raza, this.entryDate, this.birthDate,
       [this.photo = 'galgo.png'])
       : age = null;
@@ -41,63 +42,15 @@ class AnimalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    this.age = _calculateAge(this.birthDate);
-    return Container(
-        height: 150,
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(20.0)),
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
-            ]),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      name,
-                      style: const TextStyle(
-                          fontSize: 28, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      id,
-                      style: const TextStyle(fontSize: 17, color: Colors.grey),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Llegada: ${DateFormat("dd-MM-yyyy").format(entryDate)}",
-                      style: const TextStyle(
-                          fontSize: 19,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text("Raza: ${this.raza}",
-                        style: const TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold))
-                    /*this.age != null
-                        ? Text(
-                            "Edad:\n${this.age?[0]} años, ${this.age?[1]} meses.",
-                            style: const TextStyle(
-                                fontSize: 17, color: Colors.grey),
-                          )
-                        : Text("")*/
-                  ],
-                ),
-                Image.asset(
-                  "assets/galgo.png",
-                  height: double.infinity,
-                ),
-              ]),
-        ));
+    if (this.birthDate != DateTime.parse("1900-01-01"))
+      this.age = _calculateAge(this.birthDate);
+
+    return OrientationBuilder(builder: (context, orientation) {
+      return orientation == Orientation.portrait
+          ? PortraitAnimalTile(this.name, this.id, this.raza, this.entryDate,
+              this.birthDate, this.age)
+          : LandscapeAnimalTile(this.name, this.id, this.raza, this.entryDate,
+              this.birthDate, this.age);
+    });
   }
 }
