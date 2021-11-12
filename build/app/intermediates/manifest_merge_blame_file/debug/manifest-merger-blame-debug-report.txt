@@ -30,8 +30,8 @@
 22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 22-->[androidx.core:core:1.1.0] /home/iago/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/AndroidManifest.xml:24:18-86
 23        android:debuggable="true"
-24        android:icon="@mipmap/ic_launcher"
-24-->/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/AndroidManifest.xml:9:9-43
+24        android:icon="@mipmap/galgoappicon"
+24-->/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/AndroidManifest.xml:9:9-44
 25        android:label="galgo" >
 25-->/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/AndroidManifest.xml:8:9-30
 26        <activity

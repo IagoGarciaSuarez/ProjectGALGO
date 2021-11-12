@@ -6,7 +6,7 @@
             android:required="true" />
    <application
         android:label="galgo"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/galgoappicon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
