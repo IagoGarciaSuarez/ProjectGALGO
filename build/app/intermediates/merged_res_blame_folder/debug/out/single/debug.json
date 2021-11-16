@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-xxhdpi_galgoappicon.png.flat",
+        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-xxhdpi/galgoappicon.png"
     },
     {
-        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
-        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-hdpi_galgoappicon.png.flat",
+        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-hdpi/galgoappicon.png"
     },
     {
         "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/drawable-v21_launch_background.xml.flat",
@@ -16,15 +16,15 @@
         "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/drawable/launch_background.xml"
     },
     {
-        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-xhdpi_galgoappicon.png.flat",
+        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-xhdpi/galgoappicon.png"
     },
     {
-        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
-        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-xxxhdpi_galgoappicon.png.flat",
+        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-xxxhdpi/galgoappicon.png"
     },
     {
-        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/res/merged/debug/mipmap-mdpi_galgoappicon.png.flat",
+        "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/mipmap-mdpi/galgoappicon.png"
     }
 ]

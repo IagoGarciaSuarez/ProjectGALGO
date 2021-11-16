@@ -1,5 +1,5 @@
 name: galgo
-description: A new Flutter project.
+description: A project to help shelters managing their animals with the possibility of using NFC.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.

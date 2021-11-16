@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import './animal_list.dart';
 import './animals.dart';
-import './animal_form_display.dart';
+import './animal_form.dart';
 import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
 
 void main() {
@@ -89,6 +89,7 @@ class _MyHomePageState extends State<_MyHomePage> {
       title: "GALGO",
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.black,
           title: Text("GALGO"),
           centerTitle: true,
           actions: [
@@ -104,8 +105,7 @@ class _MyHomePageState extends State<_MyHomePage> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                AnimalFormDisplay(element['id'].toString()),
+                            builder: (context) => AnimalForm(element),
                           ));
                     }
                     break;
