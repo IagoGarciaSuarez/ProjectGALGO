@@ -5,7 +5,7 @@
             android:name="android.hardware.nfc"
             android:required="true" />
    <application
-        android:label="galgo"
+        android:label="GALGO"
         android:icon="@mipmap/galgoappicon">
         <activity
             android:name=".MainActivity"

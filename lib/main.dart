@@ -89,6 +89,7 @@ class _MyHomePageState extends State<_MyHomePage> {
       title: "GALGO",
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.black,
           title: Text("GALGO"),
           centerTitle: true,
           actions: [

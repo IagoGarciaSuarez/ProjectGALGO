@@ -75,35 +75,46 @@ class PortraitAnimalTile extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          name,
-                          style: const TextStyle(
-                              fontSize: 28, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          id,
-                          style:
-                              const TextStyle(fontSize: 17, color: Colors.grey),
-                        ),
+                        Padding(
+                            padding: const EdgeInsets.all(1.0),
+                            child: Text(
+                              name,
+                              style: const TextStyle(
+                                  fontSize: 28, fontWeight: FontWeight.bold),
+                            )),
+                        Padding(
+                            padding: const EdgeInsets.all(1.0),
+                            child: Text(
+                              id,
+                              style: const TextStyle(
+                                  fontSize: 17, color: Colors.grey),
+                            )),
                         SizedBox(
-                          height: 10,
+                          height: 7,
                         ),
-                        Text(
-                          "Llegada: ${DateFormat("dd-MM-yyyy").format(entryDate)}",
-                          style: const TextStyle(
-                              fontSize: 17,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
+                        Padding(
+                            padding: const EdgeInsets.all(1.0),
+                            child: Text(
+                              "Llegada: ${DateFormat("dd-MM-yyyy").format(entryDate)}",
+                              style: const TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.all(1.0),
+                          child: Text("Raza: ${breed}",
+                              style: const TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.bold)),
                         ),
-                        Text("Raza: ${breed}",
-                            style: const TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.bold)),
                         age != null
-                            ? Text(
-                                "Edad: ${age[0]} años, ${age[1]} meses.",
-                                style: const TextStyle(
-                                    fontSize: 17, color: Colors.grey),
-                              )
+                            ? Padding(
+                                padding: const EdgeInsets.all(1.0),
+                                child: Text(
+                                  "Edad: ${age[0]} años, ${age[1]} meses.",
+                                  style: const TextStyle(
+                                      fontSize: 17, color: Colors.grey),
+                                ))
                             : Text("")
                       ],
                     ),
@@ -113,7 +124,8 @@ class PortraitAnimalTile extends StatelessWidget {
                         alignment: Alignment.center,
                         decoration: new BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/galgo.png'),
+                                image:
+                                    AssetImage('assets/${animalData['photo']}'),
                                 fit: BoxFit.fill)))
                   ]),
             )));

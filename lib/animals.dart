@@ -17,7 +17,7 @@ const ANIMAL_LIST = [
     'id': '1234',
     'name': 'Pupo',
     'breed': 'Galgo',
-    'photo': 'galgo.png',
+    'photo': 'pupo.jpg',
     'chip': '127819471827492',
     'birthDate': '2019-12-12',
     'entryDate': '2020-05-19',
@@ -30,10 +30,10 @@ const ANIMAL_LIST = [
     'notes': '-'
   },
   {
-    'id': '752378',
+    'id': '5678',
     'name': 'Max',
     'breed': 'Galgo',
-    'photo': 'galgo.png',
+    'photo': 'max.jpg',
     'chip': '127819471827493',
     'birthDate': '2020-05-05',
     'entryDate': '2021-10-30',
@@ -49,7 +49,7 @@ const ANIMAL_LIST = [
     'name': 'Kros',
     'chip': '59284029402849',
     'breed': 'Galgo',
-    'photo': 'galgo.png',
+    'photo': 'kros.jpg',
     'birthDate': 'null',
     'entryDate': '2021-10-24',
     'description':
@@ -64,7 +64,7 @@ const ANIMAL_LIST = [
     'id': '755232378',
     'name': 'Linares',
     'breed': 'Bodeguero',
-    'photo': 'galgo.png',
+    'photo': 'linares.jpg',
     'chip': '59284029402849',
     'birthDate': 'null',
     'entryDate': '2021-06-24',
@@ -80,7 +80,7 @@ const ANIMAL_LIST = [
     'id': '75237478',
     'name': 'Narco',
     'breed': 'Galgo',
-    'photo': 'galgo.png',
+    'photo': 'narco.jpg',
     'chip': '59284029402849',
     'birthDate': 'null',
     'entryDate': '2020-01-05',
@@ -93,77 +93,29 @@ const ANIMAL_LIST = [
     'notes':
         'Cuando se vayan todos a dormir, tener cuidado con Narco porque se esconde para no entrar.'
   },
-  /*{
+  {
+    'id': '752373',
     'name': 'Thor',
-    'id': '75237845',
     'breed': 'Galgo',
+    'photo': 'thor.jpg',
+    'chip': '59024029402849',
     'birthDate': 'null',
-    'entryDate': '2019-10-24',
-    'photo': 'galgo.png'
+    'entryDate': '2020-02-05',
+    'description': 'Tiene cara de viejo y es muy tranquilo.',
+    'diseases': '-',
+    'entryReasons': '-',
+    'notes': '-'
   },
   {
-    'name': 'Trueno',
     'id': '75237809',
+    'name': 'Trueno',
     'breed': 'Galgo',
+    'photo': 'trueno.jpg',
     'birthDate': 'null',
     'entryDate': '2021-02-13',
-    'photo': 'galgo.png',
-    'description': 'Es absolutamente estúpido.'
+    'description': 'Es absolutamente estúpido.',
+    'diseases': '-',
+    'entryReasons': '-',
+    'notes': '-'
   },
-  {
-    'name': 'Pupo',
-    'id': '72412348',
-    'breed': 'Galgo',
-    'birthDate': '2019-12-12',
-    'entryDate': '2020-05-09',
-    'photo': 'galgo.png'
-  },
-  {
-    'name': 'Max',
-    'id': '752378',
-    'breed': 'Galgo',
-    'birthDate': '2020-05-05',
-    'entryDate': '2021-10-30',
-    'photo': 'galgo.png'
-  },
-  {
-    'name': 'Kros',
-    'id': '752234378',
-    'breed': 'Galgo',
-    'birthDate': 'null',
-    'entryDate': '2021-10-24',
-    'photo': 'galgo.png'
-  },
-  {
-    'name': 'Linares',
-    'id': '755232378',
-    'breed': 'Bodeguero',
-    'birthDate': 'null',
-    'entryDate': '2021-06-24',
-    'photo': 'galgo.png'
-  },
-  {
-    'name': 'Narco',
-    'id': '75237478',
-    'breed': 'Galgo',
-    'birthDate': 'null',
-    'entryDate': '2020-01-05',
-    'photo': 'galgo.png'
-  },
-  {
-    'name': 'Thor',
-    'id': '75237845',
-    'breed': 'Galgo',
-    'birthDate': 'null',
-    'entryDate': '2019-10-24',
-    'photo': 'galgo.png'
-  },
-  {
-    'name': 'Trueno',
-    'id': '75237809',
-    'breed': 'Galgo',
-    'birthDate': 'null',
-    'entryDate': '2021-02-13',
-    'photo': 'galgo.png'
-  }*/
 ];

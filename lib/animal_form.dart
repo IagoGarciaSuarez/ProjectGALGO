@@ -13,6 +13,7 @@ class AnimalForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.black,
           title: Text(
               'ID: ${animalData['id'].toString()} - ${animalData['name'].toString()}'),
           centerTitle: true,

@@ -32,7 +32,7 @@
 23        android:debuggable="true"
 24        android:icon="@mipmap/galgoappicon"
 24-->/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/AndroidManifest.xml:9:9-44
-25        android:label="galgo" >
+25        android:label="GALGO" >
 25-->/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/AndroidManifest.xml:8:9-30
 26        <activity
 26-->/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/AndroidManifest.xml:10:9-38:20
