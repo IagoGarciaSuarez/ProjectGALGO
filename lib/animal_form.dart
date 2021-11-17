@@ -33,8 +33,19 @@ class AnimalForm extends StatelessWidget {
                       ),
                       minimumSize:
                           Size(MediaQuery.of(context).size.width / 2, 40)),
-                  onPressed: () => WriteNFC(),
-                  child: Text('Guardar y enviar a NFC')),
+                  onPressed: () {
+                    final snackBar = SnackBar(
+                      content: const Text(
+                          'Acerque el dispositivo a una tarjeta NFC',
+                          style: TextStyle(fontSize: 15)),
+                    );
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                    WriteNFC();
+                  },
+                  child: Text('Guardar y enviar a NFC',
+                      style: TextStyle(fontSize: 15))),
             ),
             Expanded(
                 child: Container(
