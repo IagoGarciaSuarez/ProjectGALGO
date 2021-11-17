@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import './animal_list.dart';
 import './animals.dart';
 import './animal_form.dart';
-import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
+//import 'package:flutter_nfc_reader/flutter_nfc_reader.dart';
 
 void main() {
   runApp(_MyApp());
@@ -73,9 +73,9 @@ class _MyHomePageState extends State<_MyHomePage> {
                       },
                     ),
                   );
-                  FlutterNfcReader.write("id", animalId).then((response) {
-                    print(response.content);
-                  });
+                  // FlutterNfcReader.write("id", animalId).then((response) {
+                  //   print(response.content);
+                  // });
                 },
               ),
             ],
@@ -96,22 +96,23 @@ class _MyHomePageState extends State<_MyHomePage> {
             Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: IconButton(
-                icon: Icon(Icons.nfc),
-                onPressed: () => FlutterNfcReader.read().then((response) {
-                  animalId = (response.content.substring(5));
-                  print(animalId);
-                  for (final element in ANIMAL_LIST) {
-                    if (element['id'].toString() == animalId) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AnimalForm(element),
-                          ));
-                    }
-                    break;
-                  }
-                }),
-              ),
+                  icon: Icon(Icons.nfc),
+                  onPressed: () =>
+                      {} // FlutterNfcReader.read().then((response) {
+                  //   animalId = (response.content.substring(5));
+                  //   print(animalId);
+                  //   for (final element in ANIMAL_LIST) {
+                  //     if (element['id'].toString() == animalId) {
+                  //       Navigator.push(
+                  //           context,
+                  //           MaterialPageRoute(
+                  //             builder: (context) => AnimalForm(element),
+                  //           ));
+                  //     }
+                  //     break;
+                  //   }
+                  //}),
+                  ),
             ),
             Padding(
               padding: EdgeInsets.only(right: 20.0),
