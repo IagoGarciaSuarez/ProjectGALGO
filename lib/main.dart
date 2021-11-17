@@ -125,6 +125,16 @@ class _MyHomePageState extends State<_MyHomePage> {
           ],
         ),
         body: AnimalList(ANIMAL_LIST),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AnimalForm(ANIMAL_EMPTY_FORM),
+                  ));
+            },
+            tooltip: 'Añadir nuevo animal',
+            child: Icon(Icons.add)),
       ),
     );
   }

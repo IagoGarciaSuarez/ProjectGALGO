@@ -11,7 +11,19 @@
 'entryReasons': String reasons,
 'notes': String notes
 */
-
+const ANIMAL_EMPTY_FORM = {
+  'id': 'Random generated ID',
+  'name': 'Escriba el nombre aquí.',
+  'breed': 'Escriba la raza aquí.',
+  'photo': 'galgo.png',
+  'chip': 'Automatic chip data',
+  'birthDate': 'null',
+  'entryDate': '1996-12-12',
+  'description': 'Escriba la descripción del animal aquí.',
+  'diseases': 'Escriba las enfermedades del animal aquí.',
+  'entryReasons': 'Escriba los motivos de ingreso del animal aquí.',
+  'notes': 'Escriba las notas sobre el animal aquí.'
+};
 const ANIMAL_LIST = [
   {
     'id': '1234',
