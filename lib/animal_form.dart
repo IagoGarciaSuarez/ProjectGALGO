@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import './utils.dart';
 
 class AnimalForm extends StatelessWidget {
   final Map<String, String> animalData;
@@ -18,16 +19,48 @@ class AnimalForm extends StatelessWidget {
               'ID: ${animalData['id'].toString()} - ${animalData['name'].toString()}'),
           centerTitle: true,
         ),
-        body: Container(
-          height: double.infinity,
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
-              ]),
-          child: AnimalFormInfo(this.animalData),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(top: 5.0, right: 10.0),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      elevation: 5,
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(10.0),
+                      ),
+                      minimumSize:
+                          Size(MediaQuery.of(context).size.width / 2, 40)),
+                  onPressed: () {
+                    final snackBar = SnackBar(
+                      content: const Text(
+                          'Acerque el dispositivo a una tarjeta NFC',
+                          style: TextStyle(fontSize: 15)),
+                    );
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                    WriteNFC();
+                  },
+                  child: Text('Guardar y enviar a NFC',
+                      style: TextStyle(fontSize: 15))),
+            ),
+            Expanded(
+                child: Container(
+              height: double.infinity,
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black.withAlpha(100), blurRadius: 10.0),
+                  ]),
+              child: AnimalFormInfo(this.animalData),
+            )),
+          ],
         ));
   }
 }

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/home/iago/.local/share/Trash/files/galgo/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/android/app/src/main/res/values/styles.xml",
+                    "source": "/home/iago/.local/share/Trash/files/galgo/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

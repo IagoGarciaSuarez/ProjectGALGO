@@ -1,4 +1,4 @@
-#Tue Nov 16 11:45:34 CET 2021
-base.0=/home/iago/Desktop/UCLM/4to Informatica/SSII/galgo/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+#Wed Nov 17 16:16:24 CET 2021
+base.0=/home/iago/.local/share/Trash/files/galgo/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
