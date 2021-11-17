@@ -12,21 +12,6 @@ class AnimalList extends StatelessWidget {
     return ListView(children: [
       ...(animalsDB).map((animalData) {
         return OrientedAnimalTile(animalData);
-        // animalData['birthDate'] != null
-        //     ? ret = OrientedAnimalTile.withBirthdate(
-        //         animalData['name'].toString(),
-        //         animalData['id'].toString(),
-        //         animalData['breed'].toString(),
-        //         DateTime.parse(animalData['entryDate'].toString()),
-        //         DateTime.parse(animalData['birthDate'].toString()),
-        //         animalData['photo'].toString())
-        //     : ret = OrientedAnimalTile(
-        //         animalData['name'].toString(),
-        //         animalData['id'].toString(),
-        //         animalData['breed'].toString(),
-        //         DateTime.parse(animalData['entryDate'].toString()),
-        //       );
-        //return ret;
       })
     ]);
   }
