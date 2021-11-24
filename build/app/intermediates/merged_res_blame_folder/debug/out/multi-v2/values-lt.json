@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/iago/.local/share/Trash/files/galgo/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-lt/values-lt.xml",
+            "outputFile": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-lt/values-lt.xml",
             "map": [
                 {
-                    "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/2e94107f30f39be366a17347c2bf100b/core-1.1.0/res/values-lt/values-lt.xml",
+                    "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/7d77d4ebbaf550305d01ed54778f79fb/core-1.6.0/res/values-lt/values-lt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

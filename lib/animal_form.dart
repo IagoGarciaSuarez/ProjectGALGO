@@ -41,8 +41,6 @@ class AnimalForm extends StatelessWidget {
                     );
                     ScaffoldMessenger.of(context).hideCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-                    WriteNFC();
                   },
                   child: Text('Guardar y enviar a NFC',
                       style: TextStyle(fontSize: 15))),
