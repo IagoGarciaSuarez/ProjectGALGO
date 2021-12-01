@@ -13,16 +13,16 @@ Future<Map<String, dynamic>> ReadNFC() async {
   }
   try {
     await FlutterNfcKit.poll(timeout: Duration(seconds: 10));
+    for (var record in await FlutterNfcKit.readNDEFRecords(cached: false)) {
+      result = jsonDecode(utf8.decode(record.payload!).substring(2));
+    }
   } on PlatformException catch (e) {
     result = {'error': 'No se ha detectado una tarjeta NFC a tiempo.'};
-  }
-  for (var record in await FlutterNfcKit.readNDEFRecords(cached: false)) {
-    result = jsonDecode(utf8.decode(record.payload!).substring(2));
   }
   return result;
 }
 
-Future<Map<String, dynamic>> WriteNFC(Map<String, String> animalData) async {
+Future<Map<String, dynamic>> WriteNFC(Map<String, dynamic> animalData) async {
   var availability = await FlutterNfcKit.nfcAvailability;
   var tag;
   Map<String, dynamic> result = {};
@@ -40,7 +40,6 @@ Future<Map<String, dynamic>> WriteNFC(Map<String, String> animalData) async {
     }
   } on PlatformException catch (e) {
     result = {'error': 'No se ha detectado una tarjeta NFC a tiempo.'};
-    print(result);
     return result;
   }
 

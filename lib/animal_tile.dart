@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import './portrait_animal_tile.dart';
 import './landscape_animal_tile.dart';
+import './animal.dart';
 
 class OrientedAnimalTile extends StatelessWidget {
-  final Map<String, String> animalData;
+  final Animal animalData;
   List<int>? age;
 
   // final String name;
@@ -29,7 +30,8 @@ class OrientedAnimalTile extends StatelessWidget {
     return OrientationBuilder(builder: (context, orientation) {
       return orientation == Orientation.portrait
           ? PortraitAnimalTile(this.animalData)
-          : LandscapeAnimalTile(this.animalData);
+          : PortraitAnimalTile(this.animalData);
+      //LandscapeAnimalTile(this.animalData);
     });
   }
 }

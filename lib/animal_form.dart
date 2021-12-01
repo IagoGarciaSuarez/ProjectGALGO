@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:galgo/animal.dart';
 import 'package:intl/intl.dart';
 import './utils.dart';
 
+late Animal gAnimalData;
+
 class AnimalForm extends StatelessWidget {
-  final Map<String, String> animalData;
+  final Animal animalData;
   final List<int> age;
 
   AnimalForm(
@@ -12,11 +15,12 @@ class AnimalForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    gAnimalData = this.animalData.cloneAnimal();
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text(
-              'ID: ${animalData['id'].toString()} - ${animalData['name'].toString()}'),
+          title: Text('ID: ${gAnimalData.id} - ${gAnimalData.name}'),
           centerTitle: true,
         ),
         body: Column(
@@ -34,13 +38,23 @@ class AnimalForm extends StatelessWidget {
                       minimumSize:
                           Size(MediaQuery.of(context).size.width / 2, 40)),
                   onPressed: () {
-                    final snackBar = SnackBar(
-                      content: const Text(
-                          'Acerque el dispositivo a una tarjeta NFC',
-                          style: TextStyle(fontSize: 15)),
-                    );
-                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    WriteNFC(gAnimalData.toJson()).then((r) {
+                      final snackBar = SnackBar(
+                        content: Text('Acerce el dispositivo a una tarjeta NFC',
+                            style: TextStyle(fontSize: 15)),
+                      );
+                      if (r.containsKey('error')) {
+                        SnackBar(
+                          content:
+                              Text(r['error'], style: TextStyle(fontSize: 15)),
+                        );
+
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    });
                   },
                   child: Text('Guardar y enviar a NFC',
                       style: TextStyle(fontSize: 15))),
@@ -56,7 +70,7 @@ class AnimalForm extends StatelessWidget {
                     BoxShadow(
                         color: Colors.black.withAlpha(100), blurRadius: 10.0),
                   ]),
-              child: AnimalFormInfo(this.animalData),
+              child: AnimalFormInfo(),
             )),
           ],
         ));
@@ -64,18 +78,12 @@ class AnimalForm extends StatelessWidget {
 }
 
 class AnimalFormInfo extends StatefulWidget {
-  final Map<String, String> animalData;
-
-  AnimalFormInfo(this.animalData);
+  AnimalFormInfo();
   @override
-  _AnimalFormInfoState createState() => _AnimalFormInfoState(this.animalData);
+  _AnimalFormInfoState createState() => _AnimalFormInfoState();
 }
 
 class _AnimalFormInfoState extends State<AnimalFormInfo> {
-  final Map<String, String> animalData;
-
-  _AnimalFormInfoState(this.animalData);
-
   List<int> _calculateAge(DateTime birthDate) {
     final now = new DateTime.now();
 
@@ -98,17 +106,12 @@ class _AnimalFormInfoState extends State<AnimalFormInfo> {
 
   @override
   Widget build(BuildContext context) {
-    String name = this.animalData['name'].toString();
-    String breed = this.animalData['breed'].toString();
-    String photo = this.animalData['photo'].toString();
-    String chip = this.animalData['chip'].toString();
-    DateTime entryDate =
-        DateTime.parse(this.animalData['entryDate'].toString());
+    DateTime entryDate = DateTime.parse(gAnimalData.entryDate);
     DateTime birthDate;
     List<int>? age;
     String ageStr = '';
-    if (this.animalData['birthDate'].toString() != 'null') {
-      birthDate = DateTime.parse(this.animalData['birthDate'].toString());
+    if (gAnimalData.birthDate != 'null') {
+      birthDate = DateTime.parse(gAnimalData.birthDate);
     } else {
       birthDate = DateTime.parse("1900-01-01");
       ageStr = '-';
@@ -117,10 +120,6 @@ class _AnimalFormInfoState extends State<AnimalFormInfo> {
       age = _calculateAge(birthDate);
       ageStr = '${age[0]} años, ${age[1]} meses';
     }
-    String description = this.animalData['description'].toString();
-    String diseases = this.animalData['diseases'].toString();
-    String entryReasons = this.animalData['entryReasons'].toString();
-    String notes = this.animalData['notes'].toString();
 
     return ListView(
       shrinkWrap: true,
@@ -135,18 +134,17 @@ class _AnimalFormInfoState extends State<AnimalFormInfo> {
                 children: <Widget>[
                   Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: AnimalFormName(name)),
+                      child: AnimalFormName()),
                   Padding(
                       padding: const EdgeInsets.all(10.0),
-                      child: AnimalFormBreed(breed)),
+                      child: AnimalFormBreed()),
                 ],
               ),
               Padding(
                   padding: const EdgeInsets.all(25.0),
-                  child: AnimalFormPhoto(photo)),
+                  child: AnimalFormPhoto()),
             ]),
-        Padding(
-            padding: const EdgeInsets.all(10.0), child: AnimalFormChip(chip)),
+        Padding(padding: const EdgeInsets.all(10.0), child: AnimalFormChip()),
         Padding(
             padding: const EdgeInsets.all(10.0),
             child: AnimalFormEntryDate(entryDate)),
@@ -157,36 +155,30 @@ class _AnimalFormInfoState extends State<AnimalFormInfo> {
             padding: const EdgeInsets.all(10.0), child: AnimalFormAge(ageStr)),
         Padding(
             padding: const EdgeInsets.all(10.0),
-            child: AnimalFormDescription(description)),
+            child: AnimalFormDescription()),
+        Padding(
+            padding: const EdgeInsets.all(10.0), child: AnimalFormDiseases()),
         Padding(
             padding: const EdgeInsets.all(10.0),
-            child: AnimalFormDiseases(diseases)),
-        Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: AnimalFormEntryReasons(entryReasons)),
-        Padding(
-            padding: const EdgeInsets.all(10.0), child: AnimalFormNotes(notes))
+            child: AnimalFormEntryReasons()),
+        Padding(padding: const EdgeInsets.all(10.0), child: AnimalFormNotes())
       ],
     );
   }
 }
 
 class AnimalFormName extends StatefulWidget {
-  String name;
-
-  AnimalFormName(this.name);
-
   @override
   _AnimalFormNameState createState() => _AnimalFormNameState();
 }
 
 class _AnimalFormNameState extends State<AnimalFormName> {
-  TextEditingController _controller = TextEditingController();
   bool _isEnable = false;
   IconData _editIcon = Icons.edit;
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    _controller.text = widget.name;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -197,19 +189,34 @@ class _AnimalFormNameState extends State<AnimalFormName> {
         Row(
           children: <Widget>[
             Container(
-              width: 150,
-              child: TextField(
-                controller: _controller,
-                enabled: _isEnable,
-              ),
-            ),
+                width: 150,
+                child: Form(
+                  key: _formKey,
+                  child: TextFormField(
+                    initialValue: gAnimalData.name,
+                    enabled: _isEnable,
+                    onSaved: (val) {
+                      gAnimalData.name = val!;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Campo obligatorio';
+                      }
+                      return null;
+                    },
+                    onChanged: (value) => _formKey.currentState!.validate(),
+                  ),
+                )),
             IconButton(
                 icon: Icon(_editIcon),
                 onPressed: () {
                   setState(() {
                     if (_isEnable == true) {
-                      _isEnable = false;
-                      _editIcon = Icons.edit;
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        _isEnable = false;
+                        _editIcon = Icons.edit;
+                      }
                     } else {
                       _isEnable = true;
                       _editIcon = Icons.edit_off_sharp;
@@ -225,21 +232,16 @@ class _AnimalFormNameState extends State<AnimalFormName> {
 
 //Breed Field
 class AnimalFormBreed extends StatefulWidget {
-  String breed;
-
-  AnimalFormBreed(this.breed);
-
   @override
   _AnimalFormBreedState createState() => _AnimalFormBreedState();
 }
 
 class _AnimalFormBreedState extends State<AnimalFormBreed> {
-  TextEditingController _controller = TextEditingController();
   bool _isEnable = false;
   IconData _editIcon = Icons.edit;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    _controller.text = widget.breed;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -250,17 +252,28 @@ class _AnimalFormBreedState extends State<AnimalFormBreed> {
         Row(
           children: <Widget>[
             Container(
-              width: 150,
-              child: TextField(
-                controller: _controller,
-                enabled: _isEnable,
-              ),
-            ),
+                width: 150,
+                child: Form(
+                  key: _formKey,
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Desconocido',
+                    ),
+                    initialValue: gAnimalData.breed,
+                    enabled: _isEnable,
+                    onSaved: (val) {
+                      if (val == '') {
+                        gAnimalData.breed = 'Desconocido';
+                      }
+                    },
+                  ),
+                )),
             IconButton(
                 icon: Icon(_editIcon),
                 onPressed: () {
                   setState(() {
                     if (_isEnable == true) {
+                      _formKey.currentState!.save();
                       _isEnable = false;
                       _editIcon = Icons.edit;
                     } else {
@@ -278,10 +291,6 @@ class _AnimalFormBreedState extends State<AnimalFormBreed> {
 
 //Photo field
 class AnimalFormPhoto extends StatefulWidget {
-  final String photo;
-
-  AnimalFormPhoto(this.photo);
-
   @override
   _AnimalFormPhotoState createState() => _AnimalFormPhotoState();
 }
@@ -295,27 +304,20 @@ class _AnimalFormPhotoState extends State<AnimalFormPhoto> {
         alignment: Alignment.center,
         decoration: new BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/${widget.photo}'),
+                image: AssetImage('assets/${gAnimalData.photo}'),
                 fit: BoxFit.fill)));
   }
 }
 
 //Chip field
 class AnimalFormChip extends StatefulWidget {
-  String chip;
-
-  AnimalFormChip(this.chip);
-
   @override
   _AnimalFormChipState createState() => _AnimalFormChipState();
 }
 
 class _AnimalFormChipState extends State<AnimalFormChip> {
-  TextEditingController _controller = TextEditingController();
-  bool _isEnable = false;
   @override
   Widget build(BuildContext context) {
-    _controller.text = widget.chip;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -326,13 +328,12 @@ class _AnimalFormChipState extends State<AnimalFormChip> {
         Row(
           children: <Widget>[
             Expanded(
-                child: Container(
-              child: TextField(
-                autofocus: true,
-                controller: _controller,
-                enabled: _isEnable,
-              ),
-            )),
+              child: Container(
+                  child: TextFormField(
+                initialValue: gAnimalData.chip,
+                enabled: false,
+              )),
+            ),
           ],
         ),
       ],
@@ -347,17 +348,36 @@ class AnimalFormEntryDate extends StatefulWidget {
   AnimalFormEntryDate(this.entryDate);
 
   @override
-  _AnimalFormEntryDateState createState() => _AnimalFormEntryDateState();
+  _AnimalFormEntryDateState createState() =>
+      _AnimalFormEntryDateState(this.entryDate);
 }
 
 class _AnimalFormEntryDateState extends State<AnimalFormEntryDate> {
   TextEditingController _controller = TextEditingController();
   bool _isEnable = false;
-  IconData _editIcon = Icons.edit;
+  DateTime entryDate;
+  late String entryDateStr;
+
+  _AnimalFormEntryDateState(this.entryDate)
+      : entryDateStr = DateFormat("dd-MM-yyyy").format(entryDate);
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: entryDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != entryDate)
+      setState(() {
+        entryDate = picked;
+        entryDateStr = DateFormat("dd-MM-yyyy").format(entryDate);
+        _controller.text = entryDateStr;
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
-    String entryDate = DateFormat("dd-MM-yyyy").format(widget.entryDate);
-    _controller.text = entryDate;
+    _controller.text = entryDateStr;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -377,17 +397,9 @@ class _AnimalFormEntryDateState extends State<AnimalFormEntryDate> {
               ),
             )),
             IconButton(
-                icon: Icon(_editIcon),
+                icon: Icon(Icons.calendar_today),
                 onPressed: () {
-                  setState(() {
-                    if (_isEnable == true) {
-                      _isEnable = false;
-                      _editIcon = Icons.edit;
-                    } else {
-                      _isEnable = true;
-                      _editIcon = Icons.edit_off_sharp;
-                    }
-                  });
+                  _selectDate(context);
                 })
           ],
         ),
@@ -402,13 +414,33 @@ class AnimalFormBirthDate extends StatefulWidget {
   AnimalFormBirthDate(this.birthDate);
 
   @override
-  _AnimalFormBirthDateState createState() => _AnimalFormBirthDateState();
+  _AnimalFormBirthDateState createState() =>
+      _AnimalFormBirthDateState(this.birthDate);
 }
 
 class _AnimalFormBirthDateState extends State<AnimalFormBirthDate> {
   TextEditingController _controller = TextEditingController();
   bool _isEnable = false;
-  IconData _editIcon = Icons.edit;
+  DateTime birthDate;
+  late String birthDateStr;
+
+  _AnimalFormBirthDateState(this.birthDate)
+      : birthDateStr = DateFormat("dd-MM-yyyy").format(birthDate);
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: birthDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != birthDate)
+      setState(() {
+        birthDate = picked;
+        birthDateStr = DateFormat("dd-MM-yyyy").format(birthDate);
+        _controller.text = birthDateStr;
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
     String birthDate = DateFormat("dd-MM-yyyy").format(widget.birthDate);
@@ -433,17 +465,9 @@ class _AnimalFormBirthDateState extends State<AnimalFormBirthDate> {
               ),
             )),
             IconButton(
-                icon: Icon(_editIcon),
+                icon: Icon(Icons.calendar_today),
                 onPressed: () {
-                  setState(() {
-                    if (_isEnable == true) {
-                      _isEnable = false;
-                      _editIcon = Icons.edit;
-                    } else {
-                      _isEnable = true;
-                      _editIcon = Icons.edit_off_sharp;
-                    }
-                  });
+                  _selectDate(context);
                 })
           ],
         ),
@@ -492,21 +516,16 @@ class _AnimalFormAgeState extends State<AnimalFormAge> {
 }
 
 class AnimalFormDescription extends StatefulWidget {
-  String description;
-
-  AnimalFormDescription(this.description);
-
   @override
   _AnimalFormDescriptionState createState() => _AnimalFormDescriptionState();
 }
 
 class _AnimalFormDescriptionState extends State<AnimalFormDescription> {
-  TextEditingController _controller = TextEditingController();
   bool _isEnable = false;
   IconData _editIcon = Icons.edit;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    _controller.text = widget.description;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -517,19 +536,29 @@ class _AnimalFormDescriptionState extends State<AnimalFormDescription> {
         Row(
           children: <Widget>[
             Expanded(
-              child: TextField(
-                keyboardType: TextInputType.multiline,
+                child: Form(
+              key: _formKey,
+              child: TextFormField(
                 minLines: 1,
                 maxLines: 15,
-                controller: _controller,
+                decoration: const InputDecoration(
+                  hintText: '-',
+                ),
+                initialValue: gAnimalData.description,
                 enabled: _isEnable,
+                onSaved: (val) {
+                  if (val == '') {
+                    gAnimalData.description = '-';
+                  }
+                },
               ),
-            ),
+            )),
             IconButton(
                 icon: Icon(_editIcon),
                 onPressed: () {
                   setState(() {
                     if (_isEnable == true) {
+                      _formKey.currentState!.save();
                       _isEnable = false;
                       _editIcon = Icons.edit;
                     } else {
@@ -547,21 +576,16 @@ class _AnimalFormDescriptionState extends State<AnimalFormDescription> {
 
 //Diseases field
 class AnimalFormDiseases extends StatefulWidget {
-  String diseases;
-
-  AnimalFormDiseases(this.diseases);
-
   @override
   _AnimalFormDiseasesState createState() => _AnimalFormDiseasesState();
 }
 
 class _AnimalFormDiseasesState extends State<AnimalFormDiseases> {
-  TextEditingController _controller = TextEditingController();
   bool _isEnable = false;
   IconData _editIcon = Icons.edit;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    _controller.text = widget.diseases;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -572,19 +596,29 @@ class _AnimalFormDiseasesState extends State<AnimalFormDiseases> {
         Row(
           children: <Widget>[
             Expanded(
-              child: TextField(
-                keyboardType: TextInputType.multiline,
+                child: Form(
+              key: _formKey,
+              child: TextFormField(
                 minLines: 1,
                 maxLines: 15,
-                controller: _controller,
+                decoration: const InputDecoration(
+                  hintText: '-',
+                ),
+                initialValue: gAnimalData.diseases,
                 enabled: _isEnable,
+                onSaved: (val) {
+                  if (val == '') {
+                    gAnimalData.diseases = '-';
+                  }
+                },
               ),
-            ),
+            )),
             IconButton(
                 icon: Icon(_editIcon),
                 onPressed: () {
                   setState(() {
                     if (_isEnable == true) {
+                      _formKey.currentState!.save();
                       _isEnable = false;
                       _editIcon = Icons.edit;
                     } else {
@@ -602,21 +636,16 @@ class _AnimalFormDiseasesState extends State<AnimalFormDiseases> {
 
 //Entry Reasons field
 class AnimalFormEntryReasons extends StatefulWidget {
-  String entryReasons;
-
-  AnimalFormEntryReasons(this.entryReasons);
-
   @override
   _AnimalFormEntryReasonsState createState() => _AnimalFormEntryReasonsState();
 }
 
 class _AnimalFormEntryReasonsState extends State<AnimalFormEntryReasons> {
-  TextEditingController _controller = TextEditingController();
   bool _isEnable = false;
   IconData _editIcon = Icons.edit;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    _controller.text = widget.entryReasons;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -627,19 +656,29 @@ class _AnimalFormEntryReasonsState extends State<AnimalFormEntryReasons> {
         Row(
           children: <Widget>[
             Expanded(
-              child: TextField(
-                keyboardType: TextInputType.multiline,
+                child: Form(
+              key: _formKey,
+              child: TextFormField(
                 minLines: 1,
                 maxLines: 15,
-                controller: _controller,
+                decoration: const InputDecoration(
+                  hintText: '-',
+                ),
+                initialValue: gAnimalData.entryReasons,
                 enabled: _isEnable,
+                onSaved: (val) {
+                  if (val == '') {
+                    gAnimalData.entryReasons = '-';
+                  }
+                },
               ),
-            ),
+            )),
             IconButton(
                 icon: Icon(_editIcon),
                 onPressed: () {
                   setState(() {
                     if (_isEnable == true) {
+                      _formKey.currentState!.save();
                       _isEnable = false;
                       _editIcon = Icons.edit;
                     } else {
@@ -656,21 +695,16 @@ class _AnimalFormEntryReasonsState extends State<AnimalFormEntryReasons> {
 }
 
 class AnimalFormNotes extends StatefulWidget {
-  String notes;
-
-  AnimalFormNotes(this.notes);
-
   @override
   _AnimalFormNotesState createState() => _AnimalFormNotesState();
 }
 
 class _AnimalFormNotesState extends State<AnimalFormNotes> {
-  TextEditingController _controller = TextEditingController();
   bool _isEnable = false;
   IconData _editIcon = Icons.edit;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    _controller.text = widget.notes;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -681,19 +715,29 @@ class _AnimalFormNotesState extends State<AnimalFormNotes> {
         Row(
           children: <Widget>[
             Expanded(
-              child: TextField(
-                keyboardType: TextInputType.multiline,
+                child: Form(
+              key: _formKey,
+              child: TextFormField(
                 minLines: 1,
                 maxLines: 15,
-                controller: _controller,
+                decoration: const InputDecoration(
+                  hintText: '-',
+                ),
+                initialValue: gAnimalData.notes,
                 enabled: _isEnable,
+                onSaved: (val) {
+                  if (val == '') {
+                    gAnimalData.notes = '-';
+                  }
+                },
               ),
-            ),
+            )),
             IconButton(
                 icon: Icon(_editIcon),
                 onPressed: () {
                   setState(() {
                     if (_isEnable == true) {
+                      _formKey.currentState!.save();
                       _isEnable = false;
                       _editIcon = Icons.edit;
                     } else {

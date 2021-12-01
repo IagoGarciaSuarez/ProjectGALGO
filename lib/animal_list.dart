@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:galgo/animal.dart';
 import './animal_tile.dart';
 
 class AnimalList extends StatelessWidget {
-  final List<Map<String, String>> animalsDB;
+  final List<Animal> animalsDB;
 
   AnimalList(this.animalsDB);
 

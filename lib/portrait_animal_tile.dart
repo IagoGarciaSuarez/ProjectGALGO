@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:galgo/animal.dart';
 import 'package:intl/intl.dart';
 import './animal_form.dart';
 
 class PortraitAnimalTile extends StatelessWidget {
-  final Map<String, String> animalData;
+  final Animal animalData;
 
   PortraitAnimalTile(this.animalData);
   // PortraitAnimalTile(this.name, this.id, this.raza, this.entryDate,
@@ -31,17 +32,16 @@ class PortraitAnimalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String name = animalData['name'].toString();
-    final String id = this.animalData['id'].toString();
-    final String breed = this.animalData['breed'].toString();
-    final String photo = this.animalData['photo'].toString();
-    final DateTime entryDate =
-        DateTime.parse(this.animalData['entryDate'].toString());
+    final String name = animalData.name;
+    final String id = this.animalData.id;
+    final String breed = this.animalData.breed;
+    final String photo = this.animalData.photo;
+    final DateTime entryDate = DateTime.parse(this.animalData.entryDate);
     DateTime birthDate;
     List<int>? age;
 
-    if (this.animalData['birthDate'].toString() != 'null') {
-      birthDate = DateTime.parse(this.animalData['birthDate'].toString());
+    if (this.animalData.birthDate != 'null') {
+      birthDate = DateTime.parse(this.animalData.birthDate);
     } else
       birthDate = DateTime.parse("1900-01-01");
 
@@ -103,7 +103,7 @@ class PortraitAnimalTile extends StatelessWidget {
                             )),
                         Padding(
                           padding: const EdgeInsets.all(1.0),
-                          child: Text("Raza: ${breed}",
+                          child: Text("Raza: $breed",
                               style: const TextStyle(
                                   fontSize: 17, fontWeight: FontWeight.bold)),
                         ),
@@ -124,8 +124,7 @@ class PortraitAnimalTile extends StatelessWidget {
                         alignment: Alignment.center,
                         decoration: new BoxDecoration(
                             image: DecorationImage(
-                                image:
-                                    AssetImage('assets/${animalData['photo']}'),
+                                image: AssetImage('assets/$photo'),
                                 fit: BoxFit.fill)))
                   ]),
             )));

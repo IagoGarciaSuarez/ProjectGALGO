@@ -2,10 +2,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
+
 import './animal_list.dart';
-import './animals.dart';
 import './animal_form.dart';
 import './utils.dart';
+import './animal.dart';
 
 void main() {
   runApp(_MyApp());
@@ -23,11 +27,14 @@ class _MyApp extends StatelessWidget {
 }
 
 class _MyHomePage extends StatefulWidget {
+  List<Animal> animalsDataList = [];
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<_MyHomePage> {
+  List<Animal> animalsDataList = [];
   String? valueText;
   String? animalId;
   // TextEditingController _textFieldController = TextEditingController(
@@ -84,8 +91,37 @@ class _MyHomePageState extends State<_MyHomePage> {
   //       });
   //}
 
+  // void readJson() async {
+  //   final response = await rootBundle.loadString('assets/animals.json');
+  //   late var data;
+  //   this.setState(() {
+  //     data = json.decode(response);
+  //   });
+  //   data.forEach((k, v) {
+  //     animalsDataList.add(Animal.fromJson(k, v));
+  //   });
+  // }
+
+  // @override
+  // void initState() {
+  //   this.readJson();
+  // }
+  Future<void> readJson() async {
+    final String response = await rootBundle.loadString('assets/animals.json');
+    final data = await json.decode(response);
+    data.forEach((k, v) {
+      animalsDataList.add(Animal.fromJson(k, v));
+    });
+    setState(() {});
+  }
+
+  void initState() {
+    readJson();
+  }
+
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> nfc_result = {};
     return MaterialApp(
       title: "GALGO",
       home: Scaffold(
@@ -100,7 +136,10 @@ class _MyHomePageState extends State<_MyHomePage> {
                 icon: Icon(Icons.nfc),
                 onPressed: () {
                   ReadNFC().then((res) {
-                    print(res);
+                    nfc_result = res;
+                    if (nfc_result.containsKey('error')) {
+                      print(nfc_result['error']);
+                    }
                   });
                 },
                 // onPressed: () => FlutterNfcReader.read().then((response) {
@@ -119,38 +158,17 @@ class _MyHomePageState extends State<_MyHomePage> {
                 //}),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: IconButton(
-                  icon: Icon(Icons.add),
-                  onPressed: () {
-                    WriteNFC(ANIMAL_LIST[1]).then((r) {
-                      print(r.containsKey('error'));
-                      if (r.containsKey('error')) {
-                        SnackBar(
-                          content: const Text('aaaaaaa'),
-                          action: SnackBarAction(
-                            label: 'Cerrar',
-                            onPressed: () {},
-                          ),
-                        );
-                      } else {
-                        SnackBar(
-                          content: Text(r['exito']),
-                          action: SnackBarAction(
-                            label: 'Cerrar',
-                            onPressed: () {},
-                          ),
-                        );
-                      }
-                    });
-                  } //_displayTextInputDialog(context);
-                  ),
-            )
           ],
         ),
-        body: AnimalList(ANIMAL_LIST),
+        body: AnimalList(animalsDataList),
       ),
     );
   }
+
+  // final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  // void showInSnackBar(String value) {
+  //   _scaffoldKey.currentState
+  //       .showSnackBar(new SnackBar(content: new Text(value)));
+  // }
 }
