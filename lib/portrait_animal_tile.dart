@@ -7,8 +7,6 @@ class PortraitAnimalTile extends StatelessWidget {
   final Animal animalData;
 
   PortraitAnimalTile(this.animalData);
-  // PortraitAnimalTile(this.name, this.id, this.raza, this.entryDate,
-  //     this.birthDate, this.age, this.photo);
 
   List<int> _calculateAge(DateTime birthDate) {
     final now = new DateTime.now();
@@ -32,21 +30,15 @@ class PortraitAnimalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String name = animalData.name;
-    final String id = this.animalData.id;
-    final String breed = this.animalData.breed;
-    final String photo = this.animalData.photo;
     final DateTime entryDate = DateTime.parse(this.animalData.entryDate);
-    DateTime birthDate;
+    DateTime? birthDate;
     List<int>? age;
 
-    if (this.animalData.birthDate != 'null') {
+    if (this.animalData.birthDate != '-') {
       birthDate = DateTime.parse(this.animalData.birthDate);
-    } else
-      birthDate = DateTime.parse("1900-01-01");
+    }
 
-    if (birthDate != DateTime.parse("1900-01-01"))
-      age = _calculateAge(birthDate);
+    if (birthDate != null) age = _calculateAge(birthDate);
 
     return GestureDetector(
         onTap: () {
@@ -74,57 +66,57 @@ class PortraitAnimalTile extends StatelessWidget {
                   children: <Widget>[
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Padding(
                             padding: const EdgeInsets.all(1.0),
                             child: Text(
-                              name,
+                              this.animalData.name,
                               style: const TextStyle(
                                   fontSize: 28, fontWeight: FontWeight.bold),
                             )),
                         Padding(
                             padding: const EdgeInsets.all(1.0),
                             child: Text(
-                              id,
+                              "Cuadra: ${this.animalData.cell}",
                               style: const TextStyle(
                                   fontSize: 17, color: Colors.grey),
                             )),
                         SizedBox(
-                          height: 7,
+                          height: 15,
                         ),
-                        Padding(
-                            padding: const EdgeInsets.all(1.0),
-                            child: Text(
-                              "Llegada: ${DateFormat("dd-MM-yyyy").format(entryDate)}",
-                              style: const TextStyle(
-                                  fontSize: 17,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                            )),
-                        Padding(
-                          padding: const EdgeInsets.all(1.0),
-                          child: Text("Raza: $breed",
-                              style: const TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold)),
+                        Text(
+                          "Llegó: ${DateFormat("dd-MM-yyyy").format(entryDate)}",
+                          style: const TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold),
                         ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(1.0),
+                        //   child: Text("Raza: ${this.animalData.breed}",
+                        //       style: const TextStyle(
+                        //           fontSize: 17, fontWeight: FontWeight.bold)),
+                        // ),
                         age != null
                             ? Padding(
-                                padding: const EdgeInsets.all(1.0),
+                                padding:
+                                    const EdgeInsets.only(bottom: 5.0, top: 10),
                                 child: Text(
                                   "Edad: ${age[0]} años, ${age[1]} meses.",
                                   style: const TextStyle(
-                                      fontSize: 17, color: Colors.grey),
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
                                 ))
                             : Text("")
                       ],
                     ),
                     Container(
-                        width: 100.0,
-                        height: 100.0,
+                        width: 120.0,
+                        height: 120.0,
                         alignment: Alignment.center,
                         decoration: new BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/$photo'),
+                                image: AssetImage(
+                                    'assets/${this.animalData.photo}'),
                                 fit: BoxFit.fill)))
                   ]),
             )));

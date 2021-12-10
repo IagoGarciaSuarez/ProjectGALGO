@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout/notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout/custom_dialog.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout/custom_dialog.xml"
+    },
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout/notification_action.xml"
+    }
+]

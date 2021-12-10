@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/iago/Desktop/UCLM/4to Informatica/SSII/ProjectGALGO/build/path_provider_android/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/iago/.gradle/caches/transforms-2/files-2.1/fdaa1192764eab6ea9cb59f6a77dd214/core-1.1.0/res/layout-v21/notification_action_tombstone.xml"
+    }
+]

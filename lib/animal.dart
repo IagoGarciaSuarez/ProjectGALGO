@@ -1,6 +1,10 @@
+import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
+
 class Animal {
   String id,
       name,
+      cell,
       breed,
       photo,
       chip,
@@ -13,6 +17,7 @@ class Animal {
 
   Animal(
       {required this.id,
+      required this.cell,
       required this.name,
       required this.breed,
       required this.photo,
@@ -28,6 +33,7 @@ class Animal {
     return Animal(
         id: id,
         name: jsonData['name'] as String,
+        cell: jsonData['cell'] as String,
         breed: jsonData['breed'] as String,
         photo: jsonData['photo'] as String,
         chip: jsonData['chip'] as String,
@@ -39,9 +45,26 @@ class Animal {
         notes: jsonData['notes'] as String);
   }
 
+  factory Animal.empty() {
+    return Animal(
+        id: Uuid().v4(),
+        cell: '-',
+        name: '',
+        breed: '',
+        photo: 'galgo.png',
+        chip: '-',
+        birthDate: '-',
+        entryDate: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+        description: '-',
+        diseases: '-',
+        entryReasons: '-',
+        notes: '-');
+  }
+
   Map<String, dynamic> toJson() => {
         this.id: {
           "name": this.name,
+          "cell": this.cell,
           "breed": this.breed,
           "photo": this.photo,
           "chip": this.chip,
@@ -58,6 +81,7 @@ class Animal {
     return Animal(
         id: id,
         name: name,
+        cell: cell,
         breed: breed,
         photo: photo,
         chip: chip,
